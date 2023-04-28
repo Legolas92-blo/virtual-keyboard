@@ -1,0 +1,58 @@
+.textarea {
+  width: 1200px;
+  height: 300px;
+  margin:  0 auto;
+}
+
+
+#keyboard {
+  display: block;
+  width: 1200px;
+  padding: 10px;
+  border: 2px solid #000000;
+  border-radius: 20px;
+  background-color: rgba(85, 50, 60, 0.377);
+  
+}
+
+#keyboard::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+
+.k-key,
+.k-double  {
+  width: 70px;
+  height: 70px;
+  border: 1px solid black;
+  border-radius: 20px;
+  margin: 3px;
+  padding: 3px;
+  float: left;
+  color: #ffffff;
+  font-size: 25px;
+  background-color: #493d3d;
+}
+
+.k-key {
+  width: 70px;
+  height: 70px;
+}
+
+
+.k-double {
+  width: 140px; 
+  height: 140px;
+}
+
+.clearfix {
+  display: block;
+  width: 100%;
+  clear: both;
+}
+
+.active {
+  background: rgb(156, 8, 8);
+}
