@@ -1,5 +1,5 @@
 const engEventKey = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Delete', 'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', 'Backslash', 'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', 'Quote', 'Enter', 'ShiftLeft', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', 'Slash', 'ShiftRight', 'ControlLeft', 'Meta', 'AltLeft', ' ', 'AltRight', 'ControlRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'ArrowRight'];
-const upperCase = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Delete', 'Tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[', ']', '\\', 'CapsLock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';', "'", 'Enter', 'Shift', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/', 'Shift', 'Control', 'Meta', 'Alt', ' ', 'Alt', 'Control', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'ArrowRight'];
+
 // create blocks textarea, keyboard
 const textarea = document.createElement('textarea');
 textarea.className = 'textarea';
@@ -16,9 +16,6 @@ text.class = 'text';
 text.innerText = 'Клавиатура создана в операционной системе Windows';
 
 document.body.append(text);
-
-
-let CapsLock = false;
 
 function init(arr) {
   let out = '';
@@ -55,35 +52,19 @@ document.addEventListener('keydown', (event) => {
   });
 });
 
-document.addEventListener('keydown', (event) => {
-  // CAPSLOCK.classList.add('active');
-  if (event.code === 'CapsLock' && CapsLock) {
-    init(engEventKey);
-    CapsLock = false;
-  }
-  if (event.code === 'CapsLock' && !CapsLock) {
-    CapsLock = true;
-    init(upperCase);
-  }
-});
+// document.addEventListener('keydown', (event) => {
+//   // CAPSLOCK.classList.add('active');
+//   if (event.getModifierState('CapsLock')) {
+//     console.log(event.getModifierState('CapsLock'));
+//     init(upperCase);
+//   }
+// });
 
 document.addEventListener('keydown', (event) => {
   if (event.code === 'Tab') {
     event.preventDefault();
     textarea.value += '  ';
   }
-});
-
-document.querySelectorAll('.k-key').forEach((element) => {
-  element.addEventListener('click', (event) => {
-    document.querySelectorAll('.k-key').forEach((element) => {
-      element.classList.remove('active');
-    });
-    // let code = this.getAttribute('data');
-    this.classList.add('active');
-    console.log(this);
-  });
-
 });
 
 document.addEventListener('keyup', () => {
