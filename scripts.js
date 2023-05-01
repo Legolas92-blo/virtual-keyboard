@@ -11,6 +11,13 @@ keyboard.id = 'keyboard';
 
 document.body.append(keyboard);
 
+const text = document.createElement('p');
+text.class = 'text';
+text.innerText = 'Клавиатура создана в операционной системе Windows';
+
+document.body.append(text);
+
+
 let CapsLock = false;
 
 function init(arr) {
@@ -48,17 +55,17 @@ document.addEventListener('keydown', (event) => {
   });
 });
 
-// document.addEventListener('keydown', (event) => {
-//   // CAPSLOCK.classList.add('active');
-//   if (event.code === 'CapsLock' && CapsLock) {
-//     init(engEventKey);
-//     CapsLock = false;
-//   }
-//   if (event.code === 'CapsLock' && !CapsLock) {
-//     CapsLock = true;
-//     init(upperCase);
-//   }
-// });
+document.addEventListener('keydown', (event) => {
+  // CAPSLOCK.classList.add('active');
+  if (event.code === 'CapsLock' && CapsLock) {
+    init(engEventKey);
+    CapsLock = false;
+  }
+  if (event.code === 'CapsLock' && !CapsLock) {
+    CapsLock = true;
+    init(upperCase);
+  }
+});
 
 document.addEventListener('keydown', (event) => {
   if (event.code === 'Tab') {
