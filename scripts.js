@@ -1,5 +1,5 @@
-const engEventKey = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', 'Backslash', 'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', 'Quote', 'Enter', 'ShiftLeft', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', 'Slash', 'ShiftRight', 'ControlLeft', 'Meta', 'AltLeft', ' ', 'AltRight', 'ControlRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'ArrowRight'];
-
+const engEventKey = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Delete', 'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', 'Backslash', 'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', 'Quote', 'Enter', 'ShiftLeft', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', 'Slash', 'ShiftRight', 'ControlLeft', 'Meta', 'AltLeft', ' ', 'AltRight', 'ControlRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'ArrowRight'];
+const upperCase = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Delete', 'Tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[', ']', '\\', 'CapsLock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';', "'", 'Enter', 'Shift', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/', 'Shift', 'Control', 'Meta', 'Alt', ' ', 'Alt', 'Control', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'ArrowRight'];
 // create blocks textarea, keyboard
 const textarea = document.createElement('textarea');
 textarea.className = 'textarea';
@@ -11,29 +11,23 @@ keyboard.id = 'keyboard';
 
 document.body.append(keyboard);
 
-function init() {
+let CapsLock = false;
+
+function init(arr) {
   let out = '';
-  for (let i = 0; i < engEventKey.length; i += 1) {
-    if (i % 14 === 0) {
+  for (let i = 0; i < arr.length; i += 1) {
+    if (i === 15 || i === 29 || i === 42 || i === 54) {
       out += '<div class="clearfix"></div>';
     }
-    out += `<div class='k-key' data-symbol='${engEventKey[i]}'> ${engEventKey[i]} </div>`;
+    out += `<div class='k-key' data-symbol='${arr[i]}'> ${arr[i]} </div>`;
   }
   document.querySelector('#keyboard').innerHTML = out;
 }
 
-init();
+init(engEventKey);
 
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'CapsLock') {
-    console.log('yep');
-    let upperCase = engEventKey.forEach((item) => {
-      console.log(item.toUpperCase);
-    })
-  }
-})
-
-//
+const CAPSLOCK = document.querySelector(".k-key[data-symbol='CapsLock'");
+CAPSLOCK.classList.add('double');
 
 const KEY = document.querySelectorAll('.k-key');
 
@@ -44,7 +38,6 @@ const deleteBgc = () => {
 };
 
 document.addEventListener('keydown', (event) => {
-  deleteBgc();
   textarea.focus();
   engEventKey.forEach((item) => {
     if (item === event.key) {
@@ -55,15 +48,43 @@ document.addEventListener('keydown', (event) => {
   });
 });
 
-document.addEventListener('keyup', (event) => {
+// document.addEventListener('keydown', (event) => {
+//   // CAPSLOCK.classList.add('active');
+//   if (event.code === 'CapsLock' && CapsLock) {
+//     init(engEventKey);
+//     CapsLock = false;
+//   }
+//   if (event.code === 'CapsLock' && !CapsLock) {
+//     CapsLock = true;
+//     init(upperCase);
+//   }
+// });
+
+document.addEventListener('keydown', (event) => {
+  if (event.code === 'Tab') {
+    event.preventDefault();
+    textarea.value += '  ';
+  }
+});
+
+document.querySelectorAll('.k-key').forEach((element) => {
+  element.addEventListener('click', (event) => {
+    document.querySelectorAll('.k-key').forEach((element) => {
+      element.classList.remove('active');
+    });
+    // let code = this.getAttribute('data');
+    this.classList.add('active');
+    console.log(this);
+  });
+
+});
+
+document.addEventListener('keyup', () => {
   deleteBgc();
 });
 
 const SPACE = document.querySelector(".k-key[data-symbol=' ']");
 SPACE.classList.add('space');
-
-const CAPSLOCK = document.querySelector(".k-key[data-symbol='CapsLock'");
-CAPSLOCK.classList.add('double');
 
 const leftArrow = document.querySelector(".k-key[data-symbol='ArrowLeft'");
 leftArrow.classList.add('arrow');
@@ -114,17 +135,3 @@ SLASH.innerText = '/';
 
 const QUOTE = document.querySelector(".k-key[data-symbol='Quote'");
 QUOTE.innerText = "'";
-
-// Комбинация клавиш
-
-document.addEventListener('keydown', (event) => {
-  if (event.code === '')
-})
-
-
-
-
-
-document.addEventListener('keydown', (event) => {
-  console.log(event);
-})
