@@ -1,0 +1,77 @@
+.textarea {
+  width: 1200px;
+  height: 300px;
+  margin:  0 auto;
+}
+
+
+#keyboard {
+  display: block;
+  width: 1200px;
+  padding: 10px;
+  border: 2px solid #000000;
+  border-radius: 20px;
+  background-color: rgba(85, 50, 60, 0.377);
+  
+}
+
+#keyboard::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+
+.k-key  {
+  width: 70px;
+  height: 70px;
+  border: 1px solid black;
+  border-radius: 20px;
+  margin: 3px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  float: left;
+  color: #ffffff;
+  font-size: 25px;
+  background-color: #493d3d;
+  transition: 0.1s;
+}
+
+.k-key {
+  width: 70px;
+  height: 70px;
+}
+
+
+.space {
+  width: 505px; 
+} 
+
+.double {
+  width: 120px;
+}
+
+
+.clearfix {
+  display: block;
+  width: 100%;
+  clear: both;
+}
+
+.arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(218, 142, 3);
+}
+
+.active {
+  background: rgb(156, 8, 8);
+  box-shadow: inset 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+
+
